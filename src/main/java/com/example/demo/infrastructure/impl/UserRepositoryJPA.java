@@ -1,10 +1,7 @@
 package com.example.demo.infrastructure.impl;
 
 import com.example.demo.domain.User;
-import com.example.demo.domain.UserRepository;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  * spring JPA
@@ -12,6 +9,5 @@ import org.springframework.stereotype.Repository;
  * @author orange
  * @Time 2017/11/29 0029
  */
-@Repository
-public interface UserRepositoryJPA extends JpaRepository<User,Long>, UserRepository, JpaSpecificationExecutor {
+public interface UserRepositoryJPA extends CrudRepository<User,Long> {
 }

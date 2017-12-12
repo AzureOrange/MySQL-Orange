@@ -41,6 +41,12 @@ public class User {
     private int age;
 
     /**
+     * 更新时间
+     */
+    @Column(name = "updateTime")
+    private Long updateTime;
+
+    /**
      * 体型
      */
     @Embedded
@@ -61,12 +67,14 @@ public class User {
     @Column(name = "address")
     private List<String> address;
 
+
     /**
      * 创建一个实例
      */
     public void createUserCase(){
         this.name = "张三22";
         this.age = 122;
+        this.updateTime = System.currentTimeMillis();
 
         List<String> address = new ArrayList<>();
         address.add("杭州");
@@ -85,12 +93,13 @@ public class User {
     public User() {
     }
 
-    public User(String name, int age, List<String> address, BodyBuild bodyBuild, List<School> schools) {
+    public User(String name, int age, Long updateTime, BodyBuild bodyBuild, List<School> schools, List<String> address) {
         this.name = name;
         this.age = age;
-        this.address = address;
+        this.updateTime = updateTime;
         this.bodyBuild = bodyBuild;
         this.schools = schools;
+        this.address = address;
     }
 
     public Long getId() {
@@ -103,6 +112,14 @@ public class User {
 
     public String getName() {
         return name;
+    }
+
+    public Long getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Long updateTime) {
+        this.updateTime = updateTime;
     }
 
     public void setName(String name) {
@@ -147,9 +164,10 @@ public class User {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
-                ", address=" + address +
+                ", updateTime=" + updateTime +
                 ", bodyBuild=" + bodyBuild +
                 ", schools=" + schools +
+                ", address=" + address +
                 '}';
     }
 }
