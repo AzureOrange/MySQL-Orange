@@ -2,9 +2,14 @@ package com.example.demo.service;
 
 import com.example.demo.domain.User;
 import com.example.demo.infrastructure.impl.UserRepository;
+import com.example.demo.infrastructure.impl.UserRepositoryJPA;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -20,6 +25,9 @@ public class UserService {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private UserRepositoryJPA userRepositoryJPA;
 
     public void save(){
         User user = new User();
@@ -75,7 +83,6 @@ public class UserService {
         System.out.println("输出--->" + flag);
     }
 
-    @PostConstruct
     public void count(){
         String name = "张三22";
 
@@ -83,7 +90,24 @@ public class UserService {
         long count = userRepository.countByName(name);
         System.out.println("输出--->" + total + "\n --->" + count );
 
+    }
 
+    public void delete(){
+        String name = "张三221";
+        userRepository.delete(4L);
+
+        long num = userRepository.deleteByName(name);
+
+        System.out.println("输出--->num:" + num );
+    }
+
+    @PostConstruct
+    @Transactional(rollbackFor = Exception.class)
+    public void update(){
+        long id = 1;
+        String name = "777";
+
+        userRepository.updateName(name, id);
 
     }
 }
