@@ -11,7 +11,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
 import java.util.List;
 
 /**
@@ -101,13 +100,11 @@ public class UserService {
         System.out.println("输出--->num:" + num );
     }
 
-    @PostConstruct
     @Transactional(rollbackFor = Exception.class)
     public void update(){
         long id = 1;
-        String name = "777";
+        String name = "666";
 
         userRepository.updateName(name, id);
-
     }
 }
