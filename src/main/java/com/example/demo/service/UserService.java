@@ -3,9 +3,7 @@ package com.example.demo.service;
 import com.example.demo.domain.User;
 import com.example.demo.infrastructure.impl.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -32,8 +30,7 @@ public class UserService {
         System.out.println("user的内容---->" + user.toString());
     }
 
-    @PostConstruct
-    public void find(){
+    public void findAll(){
         User user = userRepository.findOne(1L);
 
         List<User> userList = userRepository.findAll();
@@ -46,11 +43,47 @@ public class UserService {
         int totalPages = userPageList.getTotalPages(); // 页数
         long totalElements = userPageList.getTotalElements(); // 总数
 
-
         users.forEach(o1 -> {
             System.out.println("user的内容---->" + o1.toString() + "\n");
         });
         System.out.println("页数--->" + totalPages + "\n总条数--->" + totalElements);
+
+        User user2 = new User();
+        user2.createUserCase();
+        user2.setUpdateTime(1513131428573L);
+        user2.setId(6L);
+        Example<User> example = Example.of(user2);
+        User user1 = userRepository.findOne(example);
+        System.out.println("输出user1--->" + user1.toString());
+    }
+
+    public void findByCondition(){
+        String name = "张三22";
+
+        List<User> userList = userRepository.findByName(name, new Sort(Sort.Direction.ASC,"updateTime"));
+
+        userList.forEach(o1 -> {
+            System.out.println("user的内容---->" + o1.toString() + "\n");
+        });
+    }
+
+    public void exists(){
+        String name = "张三224";
+
+        boolean flag = userRepository.existsByName(name);
+
+        System.out.println("输出--->" + flag);
+    }
+
+    @PostConstruct
+    public void count(){
+        String name = "张三22";
+
+        long total = userRepository.count();
+        long count = userRepository.countByName(name);
+        System.out.println("输出--->" + total + "\n --->" + count );
+
+
 
     }
 }
