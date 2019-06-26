@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 public class MysqlProjectApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(MysqlProjectApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(MysqlProjectApplication.class, args);
+    }
 }

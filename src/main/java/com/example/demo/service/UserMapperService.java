@@ -20,7 +20,7 @@ public class UserMapperService {
     private UserMapper userMapper;
 
     @PostConstruct
-    public void find(){
+    public void find() {
         String name = "666";
 
         User user = userMapper.findByName(name);

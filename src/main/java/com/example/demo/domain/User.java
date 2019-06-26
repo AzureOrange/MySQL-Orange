@@ -71,7 +71,7 @@ public class User {
     /**
      * 创建一个实例
      */
-    public void createUserCase(){
+    public void createUserCase() {
         this.name = "张三22";
         this.age = 122;
         this.updateTime = System.currentTimeMillis();
@@ -158,16 +158,5 @@ public class User {
         this.schools = schools;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                ", updateTime=" + updateTime +
-                ", bodyBuild=" + bodyBuild +
-                ", schools=" + schools +
-                ", address=" + address +
-                '}';
-    }
+
 }

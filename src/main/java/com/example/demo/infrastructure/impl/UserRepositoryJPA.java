@@ -9,6 +9,6 @@ import org.springframework.data.repository.CrudRepository;
  * @author orange
  * @Time 2017/11/29 0029
  */
-public interface UserRepositoryJPA extends CrudRepository<User,Long> {
+public interface UserRepositoryJPA extends CrudRepository<User, Long> {
 
 }

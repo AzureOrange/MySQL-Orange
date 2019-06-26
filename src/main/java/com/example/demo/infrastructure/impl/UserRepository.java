@@ -17,7 +17,7 @@ import java.util.List;
  * @Time 2017/11/29 0029
  */
 
-public interface UserRepository extends JpaRepository<User,Long> {
+public interface UserRepository extends JpaRepository<User, Long> {
 
     /**
      * 按条件查询
@@ -79,5 +79,5 @@ public interface UserRepository extends JpaRepository<User,Long> {
     @Modifying
     @Transactional
     @Query("UPDATE User u SET u.name = ?1 WHERE u.id = ?2")
-    void updateName( String name,long id);
+    void updateName(String name, long id);
 }

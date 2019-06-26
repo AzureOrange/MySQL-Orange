@@ -28,7 +28,7 @@ public class UserService {
     @Autowired
     private UserRepositoryJPA userRepositoryJPA;
 
-    public void save(){
+    public void save() {
         User user = new User();
         user.createUserCase();
 
@@ -37,14 +37,14 @@ public class UserService {
         System.out.println("user的内容---->" + user.toString());
     }
 
-    public void findAll(){
+    public void findAll() {
         User user = userRepository.findOne(1L);
 
         List<User> userList = userRepository.findAll();
 
-        List<User> userSortList = userRepository.findAll(new Sort(Sort.Direction.ASC,"updateTime"));
+        List<User> userSortList = userRepository.findAll(new Sort(Sort.Direction.ASC, "updateTime"));
 
-        Page<User> userPageList = userRepository.findAll(new PageRequest(0,2, Sort.Direction.DESC,"updateTime"));
+        Page<User> userPageList = userRepository.findAll(new PageRequest(0, 2, Sort.Direction.DESC, "updateTime"));
 
         List<User> users = userPageList.getContent(); //内容
         int totalPages = userPageList.getTotalPages(); // 页数
@@ -64,17 +64,17 @@ public class UserService {
         System.out.println("输出user1--->" + user1.toString());
     }
 
-    public void findByCondition(){
+    public void findByCondition() {
         String name = "张三22";
 
-        List<User> userList = userRepository.findByName(name, new Sort(Sort.Direction.ASC,"updateTime"));
+        List<User> userList = userRepository.findByName(name, new Sort(Sort.Direction.ASC, "updateTime"));
 
         userList.forEach(o1 -> {
             System.out.println("user的内容---->" + o1.toString() + "\n");
         });
     }
 
-    public void exists(){
+    public void exists() {
         String name = "张三224";
 
         boolean flag = userRepository.existsByName(name);
@@ -82,26 +82,26 @@ public class UserService {
         System.out.println("输出--->" + flag);
     }
 
-    public void count(){
+    public void count() {
         String name = "张三22";
 
         long total = userRepository.count();
         long count = userRepository.countByName(name);
-        System.out.println("输出--->" + total + "\n --->" + count );
+        System.out.println("输出--->" + total + "\n --->" + count);
 
     }
 
-    public void delete(){
+    public void delete() {
         String name = "张三221";
         userRepository.delete(4L);
 
         long num = userRepository.deleteByName(name);
 
-        System.out.println("输出--->num:" + num );
+        System.out.println("输出--->num:" + num);
     }
 
     @Transactional(rollbackFor = Exception.class)
-    public void update(){
+    public void update() {
         long id = 1;
         String name = "666";
 
